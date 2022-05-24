@@ -1,11 +1,12 @@
-import { ISpecificationRepository } from "../repositories/ISpecificationsRepository";
+import { AppError } from "../../../../errors/AppError";
+import { ISpecificationRepository } from "../../repositories/ISpecificationsRepository";
 
 interface IRequest {
   name: string;
   description: string;
 }
 
-class CreateSpecificationService {
+class CreateSpecificationUseCase {
   constructor(private specificationRepository: ISpecificationRepository) {
 
   }
@@ -14,7 +15,7 @@ class CreateSpecificationService {
     const specificationAlreadyExists = this.specificationRepository.findByName(name);
 
     if (specificationAlreadyExists) {
-      throw new Error("Specification already exists!");
+      throw new AppError("Specification already exists!");
     }
 
     this.specificationRepository.create({
@@ -24,4 +25,4 @@ class CreateSpecificationService {
   }
 }
 
-export { CreateSpecificationService };
+export { CreateSpecificationUseCase };
