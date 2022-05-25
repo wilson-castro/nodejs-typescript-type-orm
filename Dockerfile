@@ -1,13 +1,13 @@
-FROM node
+FROM node:alpine
 
 WORKDIR /usr/app
 
 COPY package.json ./
 
-RUN npm i
+RUN npm install
 
-COPY . .
+COPY . . 
 
-EXPOSE 3333
+EXPOSE 8000
 
-CMD ["npm", "run", "dev"]
+CMD ["npm","run","dev"] 
